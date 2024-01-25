@@ -6,4 +6,5 @@ const OrderSchema = mongoose.Schema({
     CustId:{type:mongoose.Schema.Types.ObjectId,ref:"Customer"}
 })
 
+
 exports .module = mongoose.model("Order" , OrderSchema)
