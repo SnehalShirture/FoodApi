@@ -1,6 +1,7 @@
 const express = require("express");
 const bodyparser = require("body-parser");
 const mongoose = require("mongoose");
+const cors = require("cors");
 
 // Import Multer and Path
 const multer = require("multer");
@@ -8,6 +9,8 @@ const path = require("path");
 
 const server = new express();
 server.use(bodyparser.json());
+
+server.use(cors());
 
 // Storage Config
 

@@ -1,10 +1,12 @@
 const mongoose = require('mongoose')
 
 const CustomerSchema = mongoose.Schema({
-    CustName:String,
+    CustFirstName:String,
+    CustLastName:String,
     CustAdd:String,
     CustMobNo:Number,
     CustCity:String,
+    CustEmail:String,
     CustPassword:String
 
 });
