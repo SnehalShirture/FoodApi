@@ -41,7 +41,7 @@ server.post(
   uploadConfig.single("image"),
   (req, res) => {
     res.status(200).json({
-      filepath: "/images".concat(req.file.filename),
+      filepath: "/images/".concat(req.file.filename),
       uploaded: true,
     });
   },
@@ -64,6 +64,9 @@ mongoose
 
 const routes = require("./Routes/Routes");
 server.use("/api/", routes);
+
+server.use (express.static("Uploads"));
+server.use("/images",express.static("Uploads"))
 
 server.listen(5000, () => {
   console.log("Server Started");
