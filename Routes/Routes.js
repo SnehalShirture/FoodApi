@@ -16,6 +16,7 @@ router.get("/getallCust",CustomerController.getallCust);
 router.post("/updatepass",CustomerController.updatepass);
 router.post("/findCust",CustomerController.findCust);
 router.post("/deleteCust",CustomerController.deleteCust);
+router.post("/doLogin",CustomerController.doLogin);
 
 
 // Order 
@@ -23,6 +24,7 @@ router.post("/deleteCust",CustomerController.deleteCust);
 const OrderController = require("../Controler/OrderControler")
 router.post("/addOrder",OrderController.addOrder);
 router.get("/getallOrder",OrderController.getallOrder);
+router.post("/getorderById",OrderController.getorderById);
 
 
 module.exports = router;

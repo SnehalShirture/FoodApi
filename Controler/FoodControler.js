@@ -91,6 +91,7 @@ exports.getFoodCate = (req, res) => {
   Food
     .find({ foodcategory: req.body.foodcategory })
     .then((result) => {
+      
       res.status(200).json(result);
     })
     .catch((err) => {

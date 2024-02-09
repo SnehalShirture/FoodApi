@@ -9,62 +9,94 @@ exports.addCust = (req, res) => {
     CustMobNo: req.body.CustMobNo,
     CustCity: req.body.CustCity,
     CustEmail: req.body.CustEmail,
-    CustPassword: req.body.CustPassword
+    CustPassword: req.body.CustPassword,
   });
-  cust.save()
-  .then((result) => {
-    res.status(200).json(result);
-  }).catch((err) => {
-    res.status(500).send(err);
-  });
-};
-
-
-//Get all Customer 
-
-exports.getallCust = (req , res)=>{
-    Customer.find()
+  cust
+    .save()
     .then((result) => {
-        res.status(200).json(result);
-    }).catch((err) => {
-        res.status(500).send(err);
-    });
-}
-
-// Update Password 
-
-exports. updatepass =(req, res) =>{
-    Customer.findByIdAndUpdate(
-        {_id:req.body._id},
-        {CustPassword:req.body.CustPassword},
-        {new:true}
-    )
-
-    .then((result) => {
-        res.status(200).json(result);
-    }).catch((err) => {
-        res.status(500).send (err);
+      res.status(200).json(result);
+    })
+    .catch((err) => {
+      res.status(500).send(err);
     });
 };
 
-// Find Customer  by id 
+//Get all Customer
 
-exports.findCust =(req , res )=>{
-    Customer.find({_id:req.body._id})
+exports.getallCust = (req, res) => {
+  Customer.find()
     .then((result) => {
-        res.status(200).json(result);
-    }).catch((err) => {
-        res.status(500).send(err);
+      res.status(200).json(result);
+    })
+    .catch((err) => {
+      res.status(500).send(err);
     });
-}
+};
 
-// Delete Customer 
+// Update Password
 
-exports .deleteCust =(req , res )=>{
-    Customer.deleteOne({_id:req.body._id})
+exports.updatepass = (req, res) => {
+  Customer.findByIdAndUpdate(
+    { _id: req.body._id },
+    { CustPassword: req.body.CustPassword },
+    { new: true }
+  )
     .then((result) => {
-        res.status(200).json(result);
-    }).catch((err) => {
-        res.status(500).send(err);
+      res.status(200).json(result);
+    })
+    .catch((err) => {
+      res.status(500).send(err);
     });
-}
+};
+
+/*
+
+
+ */
+// Find Customer  by id
+
+exports.findCust = (req, res) => {
+  Customer.findOne({ _id: req.body._id })
+    .then((result) => {
+      res.status(200).json(result);
+    })
+    .catch((err) => {
+      res.status(500).send(err);
+    });
+};
+
+// Delete Customer
+
+exports.deleteCust = (req, res) => {
+  Customer.deleteOne({ _id: req.body._id })
+    .then((result) => {
+      res.status(200).json(result);
+    })
+    .catch((err) => {
+      res.status(500).send(err);
+    });
+};
+// Login Customer
+
+exports.doLogin = (req, res) => {
+  Customer.findOne({
+    CustEmail: req.body.CustEmail,
+    CustPassword: req.body.CustPassword,
+  })
+    .then((result) => {
+      if (result) {
+        res.status(200).json({
+          data: result,
+          success: true,
+        });
+      } else {
+        res.status(200).json({
+          data: result,
+          success: false,
+        });
+      }
+    })
+    .catch((err) => {
+      res.status(500).send(err);
+    });
+};
