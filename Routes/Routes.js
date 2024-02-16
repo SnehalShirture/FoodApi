@@ -25,6 +25,9 @@ const OrderController = require("../Controler/OrderControler")
 router.post("/addOrder",OrderController.addOrder);
 router.get("/getallOrder",OrderController.getallOrder);
 router.post("/getorderById",OrderController.getorderById);
+router.post("/getorderByCustomerId",OrderController.getorderByCustomerId);
+router.post("/updateOrderStatus",OrderController.updateOrderStatus);
+router.post("/getOrderStatusById",OrderController.getOrderStatusById);
 
 
 module.exports = router;

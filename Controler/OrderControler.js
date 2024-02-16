@@ -4,6 +4,7 @@ const Order = require("../Models/OrderSchema");
 exports.addOrder = (req, res) => {
   const ord = new Order({
     OrderTotal: req.body.OrderTotal,
+    Numberofitems: req.body.Numberofitems,
     OrderSize: req.body.OrderSize,
     CustId: req.body.CustId,
     OrderItems: req.body.OrderItems,
@@ -33,11 +34,9 @@ exports.getallOrder = (req, res) => {
 };
 
 exports.getorderById = (req, res) => {
-  Order.find(
-    { _id: req.body.OrderId}
-  )
-.populate("CustId")
-.populate("OrderItems.FoodId")
+  Order.findOne({ _id:req.body.orderid })
+    .populate("CustId")
+    .populate("OrderItems.FoodId")
     .then((result) => {
       res.status(200).json(result);
     })
@@ -45,3 +44,37 @@ exports.getorderById = (req, res) => {
       res.status(500).send(err);
     });
 };
+
+exports.getorderByCustomerId = (req , res)=>{
+  Order.find()
+  .where("CustId")
+  .eq(req.body.custid)
+  .where("OrderStatus")
+  .eq(req.body.OrderStatus)
+  .then((result) => {
+    res .status(200).json(result );
+  }).catch((err) => {
+    res.status(500).send(err);
+  });
+}
+
+exports.updateOrderStatus=(req,res)=>{
+  Order.findByIdAndUpdate(req.body.oid,
+    {OrderStatus:req.body.OrderStatus})
+    .then((result) => {
+      res.status(200).json(result) 
+    }).catch((err) => {
+      res.status(500).send(err)
+    });
+}
+
+exports.getOrderStatusById=(req,res)=>{
+  Order.find()
+  .where('OrderStatus')
+  .eq(req.body.OrderStatus)
+  .then((result) => {
+    res.status(200).json(result)
+  }).catch((err) => {
+    res.status(500).send(result)
+  });
+}
