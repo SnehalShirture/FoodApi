@@ -9,17 +9,6 @@ exports.addFood = (req, res) => {
     foodprice: req.body.foodprice,
   });
 
-  /*
-    {
-    "foodname":"Masala Dosa",
-    "foodtype":"BreakFast",
-    "foodcategory":"SouthIndia",
-    "foodimg":"String",
-    "foodprice":149
-    }
-
-
-     */
 
   food
     .save()
