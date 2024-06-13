@@ -1,5 +1,6 @@
 const Customer = require("../Models/CustomerSchema");
-
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 //Add Customer
 exports.addCust = (req, res) => {
   const cust = new Customer({
