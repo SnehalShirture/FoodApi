@@ -4,7 +4,8 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const cookieParser = require('cookie-parser')
 require('dotenv').config();
-
+const PORT = process.env.PORT || 
+6010
 
 // Import Multer and Path
 const multer = require("multer");
@@ -70,6 +71,6 @@ server.use("/api/", routes);
 server.use (express.static("Uploads"));
 server.use("/images",express.static("Uploads"))
 
-server.listen(5000, () => {
-  console.log("Server Started");
+server.listen(PORT, () => {
+  console.log(`Sever Started at Port No ${PORT}`);
 });
